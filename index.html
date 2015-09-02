@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link media="all" href="style/normalize.css" rel="stylesheet">
+		<link media="all" href="style/steelshit.css" rel="stylesheet">
+		<link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+		<link media="all" href="style/fullbaz.css" rel="stylesheet">
+		<link media="all" href="style/colorpicker.css" rel="stylesheet">
+		<link media="all" href="style/jquery.Jcrop.css" rel="stylesheet">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="js/jquery.selection.js"></script>
+		<script src="js/jquery.validate.js"></script>
+		<script src="js/jquery-ui-1.10.4.custom.js"></script>
+		<script src="js/jquery.fileupload.js"></script>
+		<script src="js/jquery.cookie.js"></script>
+		<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="js/jquery.purl.js"></script>
+		<script src="js/colorpicker.js"></script>
+		<script src="js/jquery.Jcrop.js"></script>
+		<script src="js/jquery.color.js"></script>
+		<title>Newsletter Generator</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" >
+		
+		<script type="text/javascript">
+			var d = new Date() ;
+			//ajout du script fullbaz.js dans la page
+			var s = document.createElement("script") ;
+			s.type = "text/javascript" ;
+			s.src = "js/fullbaz.js?" + d.getTime() ;
+			$("head").append(s) ;
+			//ajout du script balise.js dans la page
+			var s = document.createElement("script") ;
+			s.type = "text/javascript" ;
+			s.src = "js/balise.js?" + d.getTime() ;
+			$("head").append(s) ;
+		</script>
+	</head>
+	<body>
+		<aside id="tools" class="hide">
+			<div class="mb20 pointer pa5 hovtool rad3" id="open_importer">
+				<img src="img/import.png" class="vamiddle">
+				<span class="vamiddle ml5 fcf txtbold fs14">Importer</span>
+			</div>
+			<div class="mb20 pointer pa5 hovtool rad3" id="open_exporter">
+				<img src="img/export.png" class="vamiddle">
+				<span class="vamiddle ml5 fcf txtbold fs14">Exporter</span>
+			</div>
+			<div class="mb20 pointer pa5 hovtool rad3" id="save_newsletter" style="margin-top:60px;">
+				<img src="img/savefile.png" class="vamiddle">
+				<span class="vamiddle ml5 fcf txtbold fs14">Sauvegarder</span>
+			</div>
+		</aside>
+		<div id="slideConainer" class="slideRight">
+			
+			<div id="htmlContainer" class="w0 left ofhidden txtcenter">
+				<div class="mt20 center hide" style="color:white;">
+					<div class="left w30">
+						
+					</div>
+					<div class="cb"></div>
+				</div>
+			
+				<div class="diblock bShad bgW center mt80 rad5 pa10">
+					<div id="newsletter" class="txtleft"></div>
+				</div>
+			</div>
+			<div id="puteasideMenu" class="asideMenu ofhidden">
+				<div class="shadowContainer" style="overflow:auto;">
+					<div class="center w100" id="display_content">
+						<div class="deleteMe">
+							<div class="mt80 rad5 pa20 fs16 bgB40 fcf lh16 txtcenter">
+							
+								<div class="mb10 pacifico fs30">Bienvenue sur Meddit,</div>
+								 l'outil en ligne qui vous permet de modifier vos Emails/Newsletters en quelques clics !
+								<br>
+								Pour commencer, utilisez l'un des boutons ci-dessous.
+							</div>
+							<div class="mt80 txtcenter">
+								<form class="diblock mr10">
+									<div class="bgGr pacifico fs19 pa10 pl15 pr15 fcf rad3 txtnone prelative rot">
+										<img src="img/import.png" class="vasub mr5">Importer un fichier
+										<input type="file" class="import_file" >
+									</div>
+								</form>
+								<a href="#pop_import_html" class="bgGr pacifico fs19 pa10 pl15 pr15 fcf rad3 txtnone ml10 opener rot">
+									<img src="img/import.png" class="vasub mr5">Copier du HTML
+								</a>
+							</div>
+						</div>
+						
+						<div class="pa10 bgB40 rad5 mt30 fcf hide" id="tools_box">
+							<div id="intro" class="pacifico fs24" style="text-align:center;">Sélectionnez une partie de la newsletter à modifier</div>
+							<div id="add_content" class="hide">
+								<div class="pacifico fs24 fcf mb20">&#201;dition de texte</div>
+								<div class="bgGr pa10 rad3T">
+									<div id="toolBalise" class="fs18">
+										<input type="button" class="hoverBtn mr10 buttonBalise ba bcW fcf rad3 pa5 pl10 pr10 bgNone txtbold" name="b" value="B">
+							            <input type="button" class="hoverBtn mr10 buttonBalise ba bcW fcf rad3 pa5 pl10 pr10 bgNone txtitalic" name="i" value="i">
+							            <input type="button" class="hoverBtn mr10 buttonBalise ba bcW fcf rad3 pa5 pl10 pr10 bgNone txtunderline" name="u" value="u">
+							            <input type="button" class="hoverBtn mr10 buttonBalise ba bcW fcf rad3 pa5 pl10 pr10 bgNone txtlinethrough" name="s" value="s">
+							            <input type="button" class="hoverBtn buttonBalise ba bcW fcf rad3 pa5 pl10 pr10 bgNone" name="a" value="URL" id="balise_url">
+					            	</div>
+					            </div>
+					            
+					            	
+			            	  	<div id="show_url_options" class="hide">
+					            	<form id="add_url_options">
+					            		<div class="fs16 bgGr pl10 pb10">
+					            			Ajout de lien
+					            		</div>
+					            		<div class="pa10 pt20 bgW bbDg fcg">
+					            			<div class="ofhidden mb10">
+					            				<label class="bgGr pa5 fcf fs16 left dblock w30 lh16" for="url_href">
+					            					href
+					            				</label>
+					            				<input type="url" class="dblock left w70 fs15 lh16 pa5 ba bcGr" id="url_href" required placeholder="Entre une url valide en http:// ou https://" pattern="https?://.+" >
+					            			</div>
+					            			<div class="ofhidden mb10">
+						            			<div class="mb10 fcgr txtbold fs16 vamiddle diblock mr10">Options</div>
+						            			
+						            			<input type="checkbox" id="url_bold" class="mr5 vamiddle"><label for="url_bold" class="mr20">Gras</label>
+						            			<input type="checkbox" id="url_underline" class="mr5 vamiddle"><label for="url_underline" class="mr20">soulign&eacute;</label>
+								            	<div id="colorSelector" class="vamiddle diblock"><div></div></div>
+							            	</div>
+							            	<div id="div_previ" class="mb10">
+							            		<span class="fcgr txtbold fs16 mr10">prévisualisation</span>
+							            		<a href="#" target="_blank" style="text-decoration:none;" id="url_previ"></a>
+							            	</div>
+						            	
+						            		<div class="txtcenter">
+							            	<button type="submit" class="bgB40 pacifico fs19 bnone pl10 pr10 fcf rad3 mr10 txtnone">Ajouter</button>
+							            	<button id="annuler_url_options" type="button" class="bgB40 pacifico fs19 bnone pl10 pr10 fcf rad3 ml10 txtnone">Annuler</button>
+							            	</div>
+						            	</div>
+					            	</form>
+					            </div>
+					          
+					            <textarea id="replacor" class="w100 dblock pa5 fcg bnone" style="height:200px;"></textarea>
+					       	</div>
+			            
+			            
+							<div class="hide" id="add_image">
+								<div class="pacifico fs24 fcf mb20">Modification d'image</div>
+								<span class="bgGr pa5 rad3T fs16 diblock">Ajout de la nouvelle image</span>
+								<span class="right">taille de l'image : 
+									<span id="taille_image_mini" class="ml5 bgGr pl5 pr5 right rad3 txtbold"></span>
+								</span>
+								
+								<form id="add_new_image_input_text" target="saveImage" method="post" action="/fullbaz/server/displayImageFromInputText.php">
+									<input type="url" class="w100 dblock pa5 pb10 fcg bnone rad3TR" id="new_image_url" name="new_image_url" pattern="https?://.+" placeholder="Entrez une url valide en http:// ou https://" >
+								</form>
+								
+								<div class="mt10 mb5 fcf">Ou, télécharger depuis votre ordinateur</div>
+								<form id="add_new_image_input_file" target="saveImage" method="post" action="fullbaz/server/saveImage.php">
+									<input type="file" id="displayImage" class="w100 dblock pa5  fcg bnone rad3 bgW pointer">
+									<input type="hidden" id="pathOfBigImage" name="pathOfBigImage" >
+									<div id="crop">
+										<input type="hidden" id="x1" name="x1" >
+										<input type="hidden" id="y1" name="y1" >
+										<input type="hidden" id="h" name="h" >
+										<input type="hidden" id="w" name="w" >
+										<input type="hidden" id="displayed_w" name="displayed_w" >
+										<input type="hidden" id="displayed_h" name="displayed_h" >
+										<input type="hidden" id="wanted_w" name="wanted_w" >
+										<input type="hidden" id="wanted_h" name="wanted_h" >
+									</div>
+								</form>
+								<span class="bgGr pa5 rad3T fs16 diblock mt30">Texte alternatif</span>
+								<input type="text" class="w100 dblock pa5 pb10 fcg bnone rad3TR" id="alt_image" >
+							</div>
+			 					
+							<div class="mt30 hide" id="add_link">
+								<span class="bgGr pa5 rad3T fs16 diblock">Lien de l'élément</span>
+								<form id="form_add_link" class="prelative">
+									<input type="url" id="linkreplacor" name="linkreplacor" class="w100 dblock pa5 pb10 fcg bnone rad3TR" required pattern="https?://.+" placeholder="Entrez une url valide en http:// ou https://" >
+								</form>
+								<div class="bgW pa10 btDg fcg">
+									<input class="vamiddle" type="checkbox" checked="checked" id="replace_links" >
+									<label for="replace_links">Remplacer les <span id="nb_lien_identique">0</span> lien(s) identique(s)</label>
+								</div>
+							</div>
+							
+							<div class="txtcenter mt30 hide" id="button_validator">
+								<span id="validator" class="pointer diblock bgGr pacifico fs19 pa10 pl15 pr15 fcf rad3 txtnone mr10">Modifier</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="pop_open_newsletter" class="lb">
+			<div class="lbc">
+				<div class="lbcc bgW pa20 w25 rad5 center">
+					<div class="mb20 txtbold fs16">Charger la dernière newsletter sauvegardée&nbsp;?</div> 
+					<a href="#" id="open_last_news" class="diblock bgGr pacifico fs19 pa5 pl15 pr15 fcf rad3 txtnone mr10">Oui</a>
+					<a href="#" class="diblock bgB40 pacifico fs19 pa5 pl15 pr15 fcf rad3 txtnone mr10">Non</a>
+					<a href="#" class="closeModal">&#215;</a>
+				</div>
+			</div>
+			<a href="#" class="overlay"></a>
+		</div>
+		<div id="pop_importer" class="lb">
+			<div class="lbc">
+				<div class="lbcc bgW pa20 w30 rad5 center">
+					<div class="mb20 fcgr txtbold fs16">Importer une newsletter</div> 
+					
+					<form class="diblock mr10">
+						<div class="bgB40 pacifico fs19 pa10 pl15 pr15 fcf rad3 txtnone prelative rot">
+							<img src="img/import.png" class="vasub mr5">Importer un fichier
+							<input type="file" class="import_file" >
+						</div>
+					</form>
+					<a href="#pop_import_html" class="bgB40 pacifico fs19 pa10 pl15 pr15 fcf rad3 txtnone ml10 opener rot diblock">
+						<img src="img/import.png" class="vasub mr5">Copier du HTML
+					</a>
+					<a href="#" class="closeModal">&#215;</a>
+				</div>
+			</div>
+			<a href="#" class="overlay"></a>
+		</div>
+		<div id="pop_exporter" class="lb">
+			<div class="lbc">
+				<div class="lbcc bgW pa20 w50 rad5 center">
+					<div class="mb20 fcgr txtbold fs16">Exporter la newsletter</div> 
+					<div class="fs14 fcg mb20">
+						Afficher le <a href="#pop_export_html" id="open_export_html" class="fcg">code HTML</a>
+					</div>
+					<form action="server/downloadFile.php" method="POST" id="form_download_file">
+						<input type="hidden" id="contenu_newsletter" name="contenu_newsletter" >
+						<input type="hidden" id="file_type" name="file_type" >
+						<input type="hidden" id="file_name" name="file_name" >
+						<button type="button" id="download_html" class="bgB40 pacifico fs19 pa10 pl15 pr15 fcf rad3 txtnone prelative rot bnone mr10">
+							<img src="img/export.png" class="vasub mr5">
+							En version .html
+						</button>
+						<button type="button" id="download_txt" class="bgB40 pacifico fs19 pa10 pl15 pr15 fcf rad3 txtnone prelative rot bnone ml10">
+							<img src="img/export.png" class="vasub mr5">
+							En version .txt
+						</button>
+					</form>
+					<a href="#" class="closeModal empty_pop">&#215;</a>
+				</div>
+			</div>
+			<a href="#" class="overlay empty_pop"></a>
+		</div>
+		<div id="pop_import_html" class="lb">
+			<div class="lbc">
+				<div class="lbcc bgW pa20 w60 rad5 center" style="height: 80%;">
+					<textarea id="txtarea_code_html_import" class="w100 ba b2 bcGr pa5" style="height:80%;" placeholder="HTML ..."></textarea>
+					<div class="txtcenter mt20">
+						<a href="#" id="add_import_html" class="bgGr pacifico fs19 pa10 pl15 pr15 fcf rad3 txtnone prelative diblock">Importer</a>
+					</div>
+					<a href="#" class="closeModal empty_pop">&#215;</a>
+				</div>
+			</div>
+			<a href="#" class="overlay empty_pop"></a>
+		</div>
+		<div id="pop_export_html" class="lb">
+			<div class="lbc">
+				<div class="lbcc bgW pa20 w60 rad5 center" style="height: 80%;">
+					<textarea id="txtarea_code_html_export" class="w100 ba b2 bcGr pa5 selectAll" style="height:100%;" placeholder="HTML ..."></textarea>
+					<a href="#pop_exporter" class="closeModal empty_pop">&#215;</a>
+				</div>
+			</div>
+			<a href="#pop_exporter" class="overlay empty_pop"></a>
+		</div>
+		<div id="pop_add_utm" class="lb">
+			<div class="lbc">
+				<div class="lbcc bgW pa20 w40 rad5 center">
+					<div class="mb10 fcgr txtbold fs16">Tracking Google Analytics</div>
+					<div class="mb20">
+						<input type="checkbox" id="modify_utm" >
+						<label for="modify_utm" class="pointer fs14 fcg mb20">Ajouter / Modifier le suivi Analytics de la Newsletter</label>
+					</div>
+					
+					<form id="form_add_utm">
+						<div id="utm_list" class="dnone">
+						 	<div class="ofhidden mb20">
+								<label for="utm_source" class="bgGr pa5 fcf fs16 left dblock w40 lh16">
+									nom de campagne :
+								</label>
+								<input  type="text" class="dblock left w60 fs15 lh16 pa5 ba bcGr utm_variable" required disabled id="utm_source" >
+							</div>
+						 	<div class="ofhidden mb20">
+						 		<label for="utm_campaign" class="bgGr pa5 fcf fs16 left dblock w40 lh16">
+									EREC :
+								</label>
+								<input  type="text" class="dblock left w60 fs15 lh16 pa5 ba bcGr utm_variable" required disabled id="utm_campaign" >
+						 	</div>
+					 	</div>
+						<button class="ml10 bgGr pacifico fs19 pa5 pl15 pr15 fcf rad3 txtnone prelative diblock bnone">Suivant</button>
+					</form>
+					
+					<a href="#" class="closeModal empty_pop">&#215;</a>
+				</div>
+			</div>
+			<a href="#" class="overlay empty_pop"></a>
+		</div>
+	</body>
+</html>
